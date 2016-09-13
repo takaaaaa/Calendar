@@ -2,6 +2,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>スケジュール帳</title>
+<style>
+	a {
+		text-decoration: none;
+		color:#333;
+	}
+</style>
 </head>
 <body>
 <?php
@@ -71,19 +77,22 @@
 		    // 日付リンクの表示
 		    $link = "schedule.php?ymd=%04d%02d%02d";
 		    //引数に指定した値を指定の形式にフォーマットした文字列を取得します
-		    echo "<td><a href=\"" . sprintf($link, $y, $m, $d) . "\">{$d}</a></td>";
-
-		    // 今日が土曜日の場合の処理
-		    if (date("w", mktime(0, 0, 0, $m, $d, $y)) == 6) {
-		        // 週を終了
-		        echo "</tr>";
-
-		        // 次の週がある場合は新たな行を準備
-		        if (checkdate($m, $d + 1, $y)) {
-		            echo "<tr>";
-		        }
-		    }
-
+		    //日曜：赤色
+		    if(date("w", mktime(0, 0, 0, $m, $d, $y)) == 0) {
+					echo "<td><a href=\"" . sprintf($link, $y, $m, $d) . "\" style='color:red;'>{$d}</a></td>";
+				}
+				// 土曜：青色
+				elseif(date("w", mktime(0, 0, 0, $m, $d, $y)) == 6) {
+					echo "<td><a href=\"" . sprintf($link, $y, $m, $d) . "\" style='color:blue;'>{$d}</a></td>";
+					echo "</tr>";
+					if (checkdate($m, $d + 1, $y)) {
+					    echo "<tr>";
+					}
+				}
+				// 土日祝以外
+				else {
+					echo "<td><a href=\"" . sprintf($link, $y, $m, $d) . "\">{$d}</a></td>";
+				}
 		    // 日付を1つ進める
 		    $d++;
 		}
