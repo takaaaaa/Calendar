@@ -1,12 +1,12 @@
 <?php
 // 年月日を取得する
 if (isset($_GET["ymd"])) {
-    // スケジュールの年月日を取得する
+    //スケジュールの年月日を取得する
     $ymd = basename($_GET["ymd"]);
-    $y = intval(substr($ymd, 0, 4));
-    $m = intval(substr($ymd, 4, 2));
-    $d = intval(substr($ymd, 6, 2));
-    $disp_ymd = "{$y}年{$m}月{$d}日のスケジュール";
+    $cy = intval(substr($ymd, 0, 4));
+    $cm = intval(substr($ymd, 4, 2));
+    $cd = intval(substr($ymd, 6, 2));
+    $disp_ymd = "{$cy}年{$cm}月{$cd}日のスケジュール";
 
     // スケジュールデータを取得する
     $file_name = "data/{$ymd}.txt";
@@ -16,12 +16,22 @@ if (isset($_GET["ymd"])) {
         $schedule = "";
     }
 } else {
-    // カレンダー画面に強制移動する
-    header("Location: calendar.php");
+  $ymd_now = date("Ymd");
+  $y = substr($ymd_now, 0, 4);
+  $m = substr($ymd_now, 4, 2);
+  $d = substr($ymd_now, 6, 2);
+  $disp_ymd = "{$y}年{$m}月{$d}日のスケジュール";
+
+  $file_name = "data/{$ymd_now}.txt";
+  if (file_exists($file_name)) {
+      $schedule = file_get_contents($file_name);
+  } else {
+      $schedule = "";
+  }
 }
 
 // スケジュールを更新する
-if (isset($_POST["action"]) and $_POST["action"] == "更新する") {
+if (isset($_POST["action"]) and $_POST["action"] == "保存") {
     $schedule = htmlspecialchars($_POST["schedule"], ENT_QUOTES, "UTF-8");
 
     // スケジュールが入力されたか調べて処理を分岐
@@ -34,21 +44,28 @@ if (isset($_POST["action"]) and $_POST["action"] == "更新する") {
             unlink($file_name);
         }
     }
-    // カレンダー画面に移動する
-    header("Location: calendar.php");
+}
+
+// スケジュールをリセットする
+if (isset($_POST["clear"]) and $_POST["clear"] == "クリア") {
+    $schedule = htmlspecialchars($_POST["schedule"], ENT_QUOTES, "UTF-8");
+
+    if (!empty($schedule)) {
+      $schedule = "";
+        // スケジュールが空の場合はファイルを削除
+      if (file_exists($file_name)) {
+          unlink($file_name);
+      }
+    } else {
+        return;
+    }
 }
 ?>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>スケジュール帳</title>
-</head>
-<body>
-<h1>スケジュール帳</h1>
+
 <form method="POST" action="">
   <table>
     <tr>
-      <td><?php echo $disp_ymd; ?></td>
+     <td class="memo"><?php echo $disp_ymd ?></td>
     </tr>
     <tr>
       <td>
@@ -56,13 +73,10 @@ if (isset($_POST["action"]) and $_POST["action"] == "更新する") {
       </td>
     </tr>
     <tr>
-      <td>
-      <input type="submit" name="action" value="更新する">
-<!-- 「戻る」ボタン -->
-      <input type="button" name="back" onClick="history.back()" value="戻る">
+      <td class="memo">
+      <input type="submit" id="act" name="action" value="保存">
+      <input type="submit"  id="clear" name="clear" value="クリア">
       </td>
     </tr>
   </table>
 </form>
-</body>
-</html>
