@@ -1,0 +1,254 @@
+@charset "utf-8";
+@import url("reset.css");
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 62.5%;
+}
+body {
+    font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "Meiryo UI", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 22.4px;
+    font-size: 1.4rem;
+    color: #505a61;
+    background-color: #fff;
+    overflow: hidden;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color:#505a61;
+}
+a.line {
+    text-decoration: underline;
+    color: blue;
+}
+a.line:hover {
+    text-decoration: none;
+}
+
+/* #Form */
+#Form .wrap {
+	width: 400px;
+    min-height: 300px;
+    padding: 35px 50px;
+	margin: 100px auto 0;
+    background: #FFF;
+    border: 1px solid #00CC66;
+    border-radius: 20%
+}
+#Form .inner {
+    position: relative;
+}
+#Form .img {
+    position: absolute;
+    right: 0;
+    top: -98px;
+}
+#Form h1 {
+    font-size: 2.0rem;
+    margin-bottom: 10px;
+}
+#Form p {
+    margin-bottom: 10px;
+}
+#Form input[type="text"],
+#Form input[type="password"] {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid #00CC66;
+}
+#Form input[type="submit"] {
+    outline: 0;
+    background: #00CC66;
+    border: 1px solid #00CC66;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#Form dd {
+    margin-bottom: 10px;
+}
+#Form .btn {
+    margin-top: 20px;
+    text-align: right;
+}
+#Form .btn-area {
+    margin-top: 20px;
+    text-align: right;
+}
+#Form .btn-n {
+    display: inline-block;
+    background: #00CC66;
+    border: 1px solid #00CC66;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin: 0;
+}
+#Form .btn-n a {
+    color: #FFF;
+}
+#Form .btn-w {
+    color: #505a61;
+    display: inline-block;
+    background: #FFF;
+    border: 1px solid #00CC66;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin: 0;
+}
+#Form .btn-w a {
+    color: #00CC66;
+}
+
+/* #Cal */
+#Cal .wrap {
+    width: 800px;
+    height: 550px;
+    /*padding: 35px 50px;*/
+    margin: 100px auto 0;
+    background: #FFF;
+    border: 1px solid #00CC66;
+    border-radius: 20%
+}
+#Cal .inner {
+    position: relative;
+    padding: 50px;
+}
+#Cal p.next,
+#Cal p.prev {
+    display: inline-block;
+    background: #00CC66;
+    border-radius: 5px;
+    width: 40px;
+    height: 30px;
+    margin: 0 10px;
+    vertical-align: middle;
+    font-size: 0;
+    position: relative;
+    cursor: pointer;
+}
+#Cal p.next:after {
+    content: "";
+  display: inline-block;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #FFF;
+}
+#Cal p.prev:after {
+    content: "";
+  display: inline-block;
+  position: absolute;
+  top: 25%;
+  right: 50%;
+  width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-right: 8px solid #FFF;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+#Cal #target_date {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid #00CC66;
+}
+#Cal #cal {
+    width: 300px;
+    height: 150px;
+    margin: 20px 0 0 10px;
+    border: 1px solid #00CC66;
+}
+#Cal #cal th,
+#Cal #cal td {
+    border: 1px solid #00CC66;
+}
+#Cal #cal td {
+    text-align: center;
+}
+#Cal #cal td.maru {
+    background: #fff352;
+}
+#Cal .img {
+    display: inline-block;
+    position: absolute;
+    top: 55px;
+    right: 50px;
+}
+#Cal .img img {
+    width: 280px;
+    height: auto;
+}
+#Cal h1 {
+    margin: 0 0 10px 10px;
+    font-size: 30px;
+}
+#Cal h2 {
+    margin: 0 0 10px;
+    font-size: 25px;
+}
+#Cal textarea {
+    width: 300px;
+    margin: 0 0 0 10px;
+    border: 1px solid #00CC66;
+}
+#Cal .memo {
+    padding-left: 10px;
+}
+#Cal #act,
+#Cal #clear {
+    outline: 0;
+    background: #00CC66;
+    border: 1px solid #00CC66;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#Cal .red {
+    color: red;
+}
+#Cal .blue {
+    color: blue;
+}
+#Cal .yellow {
+    background: yellow;
+}
+#Cal .foo {
+    display: none;
+}
+#Cal #s_wrap.foo {
+    display: block;
+}
+#Cal .hide,
+#Cal .hide2 {
+    display: none;
+}
